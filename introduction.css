@@ -14,7 +14,7 @@ code em.lighter {
   background-color:#fff;
 }
 
-.code + h3 {
+h3.filename {
   font-family: monospace !important;
   font-weight:normal;
   margin: 1em 0 0 0;

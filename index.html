@@ -90,11 +90,11 @@
   <ol>
     <li>
       <h2>Namespaces?</h2>
-      <code class="code">var yourblog = {
+      <textarea class="code">var yourblog = {
   account  : {},
   posts    : [],
   comments : []
-}</code>
+}</textarea>
     </li>
   </ol>
 </section>
@@ -105,27 +105,27 @@
       <h2>Namespaces?</h2>
 
       <div>
-        <code class="code">var yourblog = {}</code>
-        <h3>yourblog.js</h3>
+        <h3 class="filename">yourblog.js</h3>
+        <textarea class="code">var yourblog = {}</textarea>
       </div>
       <div>
-        <code class="code">yourblog.account  = { stuff : {} }</code>
-        <h3>account.js</h3>
+        <h3 class="filename">account.js</h3>
+        <textarea class="code">yourblog.account  = { stuff : {} }</textarea>
       </div>
       <div>
-        <code class="code">yourblog.posts    = { moreStuff : {} }</code>
-        <h3>posts.js</h3>
+        <h3 class="filename">posts.js</h3>
+        <textarea class="code">yourblog.posts    = { moreStuff : {} }</textarea>
       </div>
       <div>
-        <code class="code">yourblog.comments = { blech : {} }</code>
-        <h3>comments.js</h3>
+        <h3 class="filename">comments.js</h3>
+        <textarea class="code">yourblog.comments = { blech : {} }</textarea>
       </div>
 
-      <div><code class="code" mode="text/html"><script src="yourblog.js"></script>
-<script src="yourblog/account.js"></script>
-<script src="yourblog/posts.js"></script>
-<script src="yourblog/comments.js"></script></code>
-        <h3>index.html</h3>
+      <div><h3 class="filename">index.html</h3><textarea class="code" mode="text/html">&lt;script src=&quot;yourblog.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;yourblog/account.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;yourblog/posts.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;yourblog/comments.js&quot;&gt;&lt;/script&gt;</textarea>
+
       </div>
     </li>
   </ol>
@@ -135,10 +135,10 @@
   <ol start="2">
     <li>
       <h2>Globally Accessible Modules?</h2>
-      <code class="code" mode="text/html"><script src="Module1.js"></script>
-<script src="Module2.js"></script>
-<script src="Module3.js"></script>
-<script src="app.js"></script></code>
+      <textarea class="code" mode="text/html">&lt;script src=&quot;Module1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module2.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module3.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;</textarea>
     </li>
   </ol>
 </section>
@@ -147,19 +147,19 @@
   <ol start="2">
     <li>
       <h2>Globally Accessible Modules?</h2>
-      <code class="code" mode="text/html"><script src="Module1.js"></script>
-<script src="Module2.js"></script>
-<script src="Module3.js"></script>
-<script src="Module4.js"></script>
-<script src="Module5.js"></script>
-<script src="Module6.js"></script>
-<script src="Module7.js"></script>
-<script src="Module8.js"></script>
-<script src="Module9.js"></script>
-<script src="Module10.js"></script>
-<script src="Module11.js"></script>
-<script src="Module12.js"></script>
-<script src="app.js"></script></code>
+      <textarea class="code" mode="text/html">&lt;script src=&quot;Module1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module2.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module3.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module4.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module5.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module6.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module7.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module8.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module9.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module10.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module11.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module12.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;</textarea>
     </li>
   </ol>
 </section>
@@ -168,19 +168,19 @@
   <ol start="2">
     <li>
       <h2>Globally Accessible Modules?</h2>
-      <code class="code" mode="text/html"><script src="Module1.js"></script>
-<script src="Module2.js"></script>
-<script src="Module3.js"></script>
-<script src="Module4.js"></script>
-<script src="Module5.js"></script>
-<script src="Module12.js"></script> <!-- want to use 6 in 12... -->
-<script src="Module6.js"></script>
-<script src="Module7.js"></script>
-<script src="Module8.js"></script>
-<script src="Module9.js"></script>
-<script src="Module10.js"></script>
-<script src="Module11.js"></script>
-<script src="app.js"></script></code>
+      <textarea class="code" mode="text/html">&lt;script src=&quot;Module1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module2.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module3.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module4.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module5.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module12.js&quot;&gt;&lt;/script&gt; &lt;!-- want to use 6 in 12... --&gt;
+&lt;script src=&quot;Module6.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module7.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module8.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module9.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module10.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module11.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;</textarea>
     </li>
   </ol>
 </section>
@@ -189,19 +189,19 @@
   <ol start="2">
     <li>
       <h2>Globally Accessible Modules?</h2>
-      <code class="code" mode="text/html"><script src="Module1.js"></script>
-<script src="Module2.js"></script>
-<script src="Module3.js"></script>
-<script src="Module4.js"></script>
-<script src="Module9.js"></script> <!-- Was 9 dependent on 12? -->
-<script src="Module5.js"></script>
-<script src="Module12.js"></script> <!-- 12 -->
-<script src="Module6.js"></script>
-<script src="Module7.js"></script>
-<script src="Module8.js"></script>
-<script src="Module10.js"></script>
-<script src="Module11.js"></script>
-<script src="app.js"></script></code>
+      <textarea class="code" mode="text/html">&lt;script src=&quot;Module1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module2.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module3.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module4.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module9.js&quot;&gt;&lt;/script&gt; &lt;!-- Was 9 dependent on 12? --&gt;
+&lt;script src=&quot;Module5.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module12.js&quot;&gt;&lt;/script&gt; &lt;!-- 12 --&gt;
+&lt;script src=&quot;Module6.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module7.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module8.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module10.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;Module11.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;</textarea>
     </li>
   </ol>
 </section>
@@ -210,7 +210,7 @@
   <ol start="4">
     <li>
       <h2>One Massive File?</h2>
-      <code class="code">// No, you don't do this
+      <textarea class="code">// No, you don't do this
 
 
 
@@ -218,7 +218,7 @@
 
 
 
-// right?</code>
+// right?</textarea>
     </li>
   </ol>
 </section>
@@ -270,11 +270,11 @@
   <blockquote cite="https://github.com/amdjs/amdjs-api/wiki/AMD">
     The specification defines a single function "define" that is available as a free variable or a global variable.
   </blockquote>
-  <div class="slide"><code class="code">define(id?, dependencies?, factory);</code></div>
+  <div class="slide"><textarea class="code">define(id?, dependencies?, factory);</textarea></div>
   <br>
   <div class="slide">
     <p>Using an ID is not recommended unless necessary.</p>
-    <code class="code">define(dependencies?, factory);</code>
+    <textarea class="code">define(dependencies?, factory);</textarea>
   </div>
 </section>
 
@@ -282,7 +282,8 @@
   <h2>The Module Pattern, a recap</h2>
   see <a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript"><u>Essential JS</u> - Module Pattern</a> by Addy Osmani
   <div>
-  <code class="code" runnable=true">var testModule = (function(){
+    <h3 class="filename">TestModule.js</h3>
+  <textarea class="code" runnable=true">var testModule = (function(){
   var counter = 0;
   return {
     incrementCounter: function() {
@@ -297,8 +298,7 @@
 
 testModule.incrementCounter();
 testModule.incrementCounter();
-testModule.resetCounter();</code>
-    <h3>TestModule.js</h3>
+testModule.resetCounter();</textarea>
   </div>
 </section>
 
@@ -476,10 +476,10 @@ testModule.resetCounter();</code></pre>
   <h3><em>Not</em> how to load or use them</h3>
   <h2>require.js - <a href="http://requirejs.org/">requirejs.org</a></h2>
   <div>
-  <code class="code">require(['TestModule'],function(TestModule) {
+  <textarea class="code">require(['TestModule'],function(TestModule) {
     TestModule.incrementCount();
     TestModule.resetCounter();
-);</code>
+);</textarea>
   </div>
 </section>
 
@@ -488,7 +488,7 @@ testModule.resetCounter();</code></pre>
   <h3><em>Not</em> how to load or use them</h3>
   <h2>curl.js - <a href="https://github.com/unscriptable/curl">github</a></h2>
   <div>
-  <code class="code">curl(['js!nonAMD.js'])
+  <textarea class="code">curl(['js!nonAMD.js'])
   .next(['dep1', 'dep2', 'dep3'], function (dep1, dep2, dep3) {
     // do something before the dom is ready
   })
@@ -500,7 +500,7 @@ testModule.resetCounter();</code></pre>
     function (ex) {
       // show an error to the user
     }
-);</code>
+);</textarea>
   </div>
 </section>
 
