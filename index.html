@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>Modular JavaScript with AMD and RequireJS</title>
+	
+	<meta name="description" content="">
+	<meta name="author" content="Jarrod Overson">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="deck.js/core/deck.core.css">
+	<link rel="stylesheet" href="deck.js/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="deck.js/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="deck.js/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="deck.js/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="deck.js/extensions/hash/deck.hash.css">
+
+  <link rel="stylesheet" href="deck.js/extensions/codemirror/deck.codemirror.css">
+  <link rel="stylesheet" href="deck.js/extensions/codemirror/themes/default.css">
+  
+	<!-- Theme CSS files (menu swaps these out) -->
+	<link rel="stylesheet" id="style-theme-link" href="deck.js/themes/style/web-2.0.css">
+	<link rel="stylesheet" id="transition-theme-link" href="deck.js/themes/transition/fade.css">
+	
+	<!-- Custom CSS just for this page -->
+	<link rel="stylesheet" href="introduction.css">
+	
+	<script src="deck.js/modernizr.custom.js"></script>
+</head>
+
+<body class="deck-container">
+
+<section class="slide" id="intro">
+  <h1>Modular JavaScript with<br>AMD and RequireJS</h1>
+  <h2>Jarrod Overson</h2>
+  <ul>
+    <li>http://jarrodoverson.com/</li>
+    <li>http://jarrodoverson.com/<em>g+</em></li>
+    <li>http://jarrodoverson.com/<em>twitter</em></li>
+    <li>http://jarrodoverson.com/<em>linkedin</em></li>
+    <li>http://jarrodoverson.com/<em>github</em></li>
+  </ul>
+  <img class="qrcode" src="qr.png">
+</section>
+
+<section class="slide">
+	<h1>Modular JavaScript and AMD</h1>
+</section>
+
+<section class="slide" style="font-size:1.5em">
+	<h2>Who Am I?</h2>
+  <section class="slide">
+    <h3>Jarrod Overson</h3>
+    <ol>
+      <li>
+        <h4>Web Junkie</h4>
+      </li>
+      <li>
+        <h4>Modularity Addict</h4>
+      </li>
+      <li>
+        <h4>Lover of neat stuff</h4>
+      </li>
+    </ol>
+  </section>
+</section>
+
+<section class="slide">
+  <h2>Why are we here?</h2>
+  <h3 class="slide">JavaScript is going through some growing pains</h3>
+  <ul>
+    <li class="slide"><h4>JavaScript <abbr title="Source Lines of Code">SLOC</abbr> in web sites is growing rapidly <span class="sparkline">1,1,1,1,2,2,2,3,3,3,4,5,6,7,8,9,10,15,20,30</span></h4></li>
+    <li class="slide"><h4>JavaScript on the server side brings more code to the table</h4></li>
+    <li class="slide"><h4>Ways to manage this code have been custom solutions, lacking long term support, or required you to buy into an entire framework</h4></li>
+  </ul>
+
+</section>
+
+<section class="slide">
+  <h1>How do you organize your code now?</h1>
+</section>
+
+<section class="slide">
+  <ol>
+    <li>
+      <h2>Namespaces?</h2>
+      <code class="code">var yourblog = {
+  account  : {},
+  posts    : [],
+  comments : []
+}</code>
+    </li>
+  </ol>
+</section>
+
+<section class="slide">
+  <ol>
+    <li>
+      <h2>Namespaces?</h2>
+
+      <div>
+        <code class="code">var yourblog = {}</code>
+        <h3>yourblog.js</h3>
+      </div>
+      <div>
+        <code class="code">yourblog.account  = { stuff : {} }</code>
+        <h3>account.js</h3>
+      </div>
+      <div>
+        <code class="code">yourblog.posts    = { moreStuff : {} }</code>
+        <h3>posts.js</h3>
+      </div>
+      <div>
+        <code class="code">yourblog.comments = { blech : {} }</code>
+        <h3>comments.js</h3>
+      </div>
+
+      <div><code class="code" mode="text/html"><script src="yourblog.js"></script>
+<script src="yourblog/account.js"></script>
+<script src="yourblog/posts.js"></script>
+<script src="yourblog/comments.js"></script></code>
+        <h3>index.html</h3>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="slide">
+  <ol start="2">
+    <li>
+      <h2>Globally Accessible Modules?</h2>
+      <code class="code" mode="text/html"><script src="Module1.js"></script>
+<script src="Module2.js"></script>
+<script src="Module3.js"></script>
+<script src="app.js"></script></code>
+    </li>
+  </ol>
+</section>
+
+<section class="slide">
+  <ol start="2">
+    <li>
+      <h2>Globally Accessible Modules?</h2>
+      <code class="code" mode="text/html"><script src="Module1.js"></script>
+<script src="Module2.js"></script>
+<script src="Module3.js"></script>
+<script src="Module4.js"></script>
+<script src="Module5.js"></script>
+<script src="Module6.js"></script>
+<script src="Module7.js"></script>
+<script src="Module8.js"></script>
+<script src="Module9.js"></script>
+<script src="Module10.js"></script>
+<script src="Module11.js"></script>
+<script src="Module12.js"></script>
+<script src="app.js"></script></code>
+    </li>
+  </ol>
+</section>
+
+<section class="slide">
+  <ol start="2">
+    <li>
+      <h2>Globally Accessible Modules?</h2>
+      <code class="code" mode="text/html"><script src="Module1.js"></script>
+<script src="Module2.js"></script>
+<script src="Module3.js"></script>
+<script src="Module4.js"></script>
+<script src="Module5.js"></script>
+<script src="Module12.js"></script> <!-- want to use 6 in 12... -->
+<script src="Module6.js"></script>
+<script src="Module7.js"></script>
+<script src="Module8.js"></script>
+<script src="Module9.js"></script>
+<script src="Module10.js"></script>
+<script src="Module11.js"></script>
+<script src="app.js"></script></code>
+    </li>
+  </ol>
+</section>
+
+<section class="slide">
+  <ol start="2">
+    <li>
+      <h2>Globally Accessible Modules?</h2>
+      <code class="code" mode="text/html"><script src="Module1.js"></script>
+<script src="Module2.js"></script>
+<script src="Module3.js"></script>
+<script src="Module4.js"></script>
+<script src="Module9.js"></script> <!-- Was 9 dependent on 12? -->
+<script src="Module5.js"></script>
+<script src="Module12.js"></script> <!-- 12 -->
+<script src="Module6.js"></script>
+<script src="Module7.js"></script>
+<script src="Module8.js"></script>
+<script src="Module10.js"></script>
+<script src="Module11.js"></script>
+<script src="app.js"></script></code>
+    </li>
+  </ol>
+</section>
+
+<section class="slide">
+  <ol start="4">
+    <li>
+      <h2>One Massive File?</h2>
+      <code class="code">// No, you don't do this
+
+
+
+
+
+
+
+// right?</code>
+    </li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Your code is already trying to be modular.</h2>
+  <section class="slide">
+    <h3>But you're walking a thin line balancing...</h3>
+    <ol>
+      <li>Simplicity</li>
+      <li>Reusability</li>
+      <li>Resource management</li>
+      <li>Dependency management</li>
+      <li>and more...</li>
+    </ol>
+    <h3>...and you shouldn't have to sacrifice this much</h3>
+  </section>
+</section>
+
+<section class="slide">
+  <h2>Why AMD?</h2>
+  <h5>If there already are solutions, and even more that have fizzled, What's different with <em>AMD</em>?</h5>
+</section>
+
+<section class="slide">
+  <h1>AMD</h1>
+</section>
+
+<section class="slide">
+  <h2>Asynchronous Module Definition</h2>
+  <ol>
+    <li class="slide">AMD is <strong>not</strong> a library.</li>
+    <li class="slide">AMD is a set of rules that define what your code means.</li>
+  </ol>
+  <div class="slide">
+    <h2>With AMD...</h2>
+    <p>You still get to choose the best tool for the job</p>
+  </div>
+  <p class="slide">You buy into a small set of transferable rules</p>
+  <p class="slide">You buy into a <strong>philosophical <em>module</em></strong></p>
+</section>
+
+<section class="slide">
+  <h1>To the code!</h1>
+</section>
+
+<section class="slide">
+    <h2><code style="background: transparent">define()</code> function</h2>
+  <blockquote cite="https://github.com/amdjs/amdjs-api/wiki/AMD">
+    The specification defines a single function "define" that is available as a free variable or a global variable.
+  </blockquote>
+  <div class="slide"><code class="code">define(id?, dependencies?, factory);</code></div>
+  <br>
+  <div class="slide">
+    <p>Using an ID is not recommended unless necessary.</p>
+    <code class="code">define(dependencies?, factory);</code>
+  </div>
+</section>
+
+<section class="slide">
+  <h2>The Module Pattern, a recap</h2>
+  see <a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript"><u>Essential JS</u> - Module Pattern</a> by Addy Osmani
+  <div>
+  <code class="code" runnable=true">var testModule = (function(){
+  var counter = 0;
+  return {
+    incrementCounter: function() {
+      console.log(counter++);
+    },
+    resetCounter: function() {
+      console.log('counter value prior to reset:' + counter);
+      counter = 0;
+    }
+  };
+})();
+
+testModule.incrementCounter();
+testModule.incrementCounter();
+testModule.resetCounter();</code>
+    <h3>TestModule.js</h3>
+  </div>
+</section>
+
+<section class="slide">
+  <h2>Module Pattern in AMD style</h2>
+  <pre><code>var testModule = (<em>function(){
+  var counter = 0;
+  return {
+    incrementCounter: function() {
+      console.log(counter++);
+    },
+    resetCounter: function() {
+      console.log('counter value prior to reset:' + counter);
+      counter = 0;
+    }
+  };
+}</em>)();
+
+testModule.incrementCounter();
+testModule.incrementCounter();
+testModule.resetCounter();</code></pre>
+</section>
+
+<section class="slide">
+  <h2>Module Pattern in AMD style</h2>
+  <pre><code><em>var testModule = (</em>function(){
+  var counter = 0;
+  return {
+    incrementCounter: function() {
+      console.log(counter++);
+    },
+    resetCounter: function() {
+      console.log('counter value prior to reset:' + counter);
+      counter = 0;
+    }
+  };
+}<em>)();</em>
+
+testModule.incrementCounter();
+testModule.incrementCounter();
+testModule.resetCounter();</code></pre>
+</section>
+
+<section class="slide">
+  <h2>Module Pattern in AMD style</h2>
+  <pre><code>                  <em>function(){
+  var counter = 0;
+  return {
+    incrementCounter: function() {
+      console.log(counter++);
+    },
+    resetCounter: function() {
+      console.log('counter value prior to reset:' + counter);
+      counter = 0;
+    }
+  };
+}</em>
+
+
+
+  </code></pre>
+</section>
+
+<section class="slide">
+  <h2>Module Pattern in AMD style</h2>
+  <pre><code>                  function(){
+  var counter = 0;
+  <em>return {
+    incrementCounter: function() {
+      console.log(counter++);
+    },
+    resetCounter: function() {
+      console.log('counter value prior to reset:' + counter);
+      counter = 0;
+    }
+  };</em>
+}
+
+
+
+  </code></pre>
+</section>
+
+<section class="slide">
+  <h2>Module Pattern in AMD style</h2>
+  <pre><code><em>define(</em>           function(){
+  var counter = 0;
+  return {
+    incrementCounter: function() {
+      console.log(counter++);
+    },
+    resetCounter: function() {
+      console.log('counter value prior to reset:' + counter);
+      counter = 0;
+    }
+  };
+}<em>);</em>
+
+/* et voila */
+
+  </code></pre>
+</section>
+
+<section class="slide">
+  <h2>AMD module with dependencies</h2>
+  <pre><code>define(<em>['TestModule']</em>, function(<em>TestModule</em>) {
+    <em>TestModule.incrementCounter()</em>;
+    return { /* stuff */ }
+});</code></pre>
+</section>
+
+<section class="slide">
+  <h2>AMD module with a Class</h2>
+  <pre><code>define(function() {<em>
+  function Shape(x,y) {
+    this.x = x;
+    this.y = y;
+  }
+  Shape.prototype.move = function(x,y) {
+    this.x += x;
+    this.y += y;
+  }
+  return Shape</em>
+});</code></pre>
+</section>
+<section class="slide">
+  <h2>AMD module with a Class cont.</h2>
+  <pre><code>define(['<em>Shape</em>'],function(<em>Shape</em>) {
+  function Circle(x,y,radius) {
+    <em>Shape</em>.call(this,x,y);
+    this.radius = radius;
+  }
+
+  Circle.prototype = <em>new Shape()</em>;
+  Circle.prototype.constructor = Circle;
+
+  return Circle;
+});</code></pre>
+</section>
+
+<section class="slide">
+  <h2>AMD module as object data</h2>
+  <pre><code>define(<em>{
+  'foo' : 42,
+  'bar' : Math.PI
+}</em>);</code></pre>
+  <p>Think JSONP with the callback always being <code>define()</code></p>
+</section>
+
+<section class="slide">
+  <h2>AMD module with plugins</h2>
+  <h4>CoffeeScript</h4>
+  <pre><code>define(['<em>cs!</em>coffeescriptModule.cs'],function(csModule){
+  csModule.foo(); // ready to use in JavaScript
+})</code></pre>
+  <section class="slide">
+    <p>Some common plugins</p>
+    <ul>
+      <li><code>text!</code> : A text file dependency</li>
+      <li><code>domReady!</code> : Cross browser domready solution</li>
+      <li><code>css!</code> : Dynamically require css</li>
+      <li><code>order!</code> : Force ordered evaluation</li>
+    </ul>
+    <p>Or <a href="http://requirejs.org/docs/plugins.html">write your own</a></p>
+  </section>
+</section>
+
+<section class="slide">
+  <h2>AMD defines how to write the modules</h2>
+  <h3><em>Not</em> how to load or use them</h3>
+</section>
+
+<section class="slide">
+  <h2>AMD defines how to write the modules</h2>
+  <h3><em>Not</em> how to load or use them</h3>
+  <h2>require.js - <a href="http://requirejs.org/">requirejs.org</a></h2>
+  <div>
+  <code class="code">require(['TestModule'],function(TestModule) {
+    TestModule.incrementCount();
+    TestModule.resetCounter();
+);</code>
+  </div>
+</section>
+
+<section class="slide">
+  <h2>AMD defines how to write the modules</h2>
+  <h3><em>Not</em> how to load or use them</h3>
+  <h2>curl.js - <a href="https://github.com/unscriptable/curl">github</a></h2>
+  <div>
+  <code class="code">curl(['js!nonAMD.js'])
+  .next(['dep1', 'dep2', 'dep3'], function (dep1, dep2, dep3) {
+    // do something before the dom is ready
+  })
+  .next(['domReady!'])
+  .then(
+    function () {
+      // do something after the dom is ready
+    },
+    function (ex) {
+      // show an error to the user
+    }
+);</code>
+  </div>
+</section>
+
+<section class="slide">
+  <h2>Application structure</h2>
+  <pre>project-root/
+  index.html
+  scripts/
+    lib/
+      require.js
+    dep1.js
+    dep2.js
+    main.js</pre>
+</section>
+
+<section class="slide">
+  <h2>index.html</h2>
+  <pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;script src=&quot;scripts/lib/require.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </div>
+</section>
+
+<section class="slide">
+  <h2>index.html</h2>
+  <pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;script <em>data-main</em>=&quot;<em>scripts/main.js</em>&quot;
+            src=&quot;scripts/lib/require.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  <p>Instruct require.js to run <code>scripts/main.js</code> on load</p>
+</section>
+
+<section class="slide">
+  <h2>index.html</h2>
+  <pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;script data-main=&quot;<em>scripts/</em>main.js&quot;
+            src=&quot;scripts/lib/require.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  <p>The <code>scripts/</code> directory will be the baseUrl for our modules</p>
+</section>
+
+<section class="slide">
+  <h2>main.js</h2>
+  <pre><code>require(['dep1','dep2'],function(dep1,dep2){
+  // And away we go!
+})</code></pre>
+</section>
+
+
+<section class="slide">
+  <h2>Optimization and Building</h2>
+  <pre><code>$ npm install requirejs
+$ r.js -o app.build.js</code></pre>
+  <p>where <code>app.build.js</code> is your build configuration file</p>
+  <pre><code>({
+  baseUrl: ".",
+  name: "main",
+  out: "main-built.js",
+  modules: [
+    {
+      name: "main"
+    }
+  ]
+})</code></pre>
+  <p>r.js can also copy your source tree into a new build dir, <strong><em>and</em></strong> minify and build your CSS.</p>
+</section>
+
+<section class="slide">
+  <h2>AMD support/use in the wild</h2>
+  <h4>Loaders</h4>
+  <ul>
+    <li><h4>require.js</h4></li>
+    <li><h4>curl.js</h4></li>
+    <li><h4>Dojo</h4></li>
+    <li><h4>MooTools</h4></li>
+    <li><h4>lsjs</h4></li>
+    <li><h4>and more!</h4></li>
+  </ul>
+  <h4>Modules/Software</h4>
+  <ul>
+    <li><h4>jQuery</h4></li>
+    <li><h4>Firebug</h4></li>
+    <li><h4>underscore.js</h4></li>
+    <li><h4>backbone.js</h4></li>
+    <li><h4>EmbedJS</h4></li>
+    <li><h4>and more!</h4></li>
+  </ul>
+</section>
+
+
+
+<section class="slide">
+  <h2>Where to go from here?</h2>
+  <div class="slide">
+    <h3>Start coding immediately!</h3>
+    <ul>
+      <li><a href="http://requirejs.org">requirejs.org</a></li>
+      <li><a href="https://github.com/jsoverson/requirejs-boilerplate">github.com/jsoverson/requirejs-boilerplate</a></li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h3>Read!</h3>
+    <ul>
+      <li><a href="http://addyosmani.com/writing-modular-js/">Writing Modular JavaScript</a> - Addy Osmani</li>
+      <li><a href="https://github.com/amdjs/amdjs-api">AMD API doc</a></li>
+      <li><a href="http://groups.google.com/group/requirejs/browse_thread/thread/9e25322d9ae2be0b">RequireJS vs Curl</a></li>
+      <li><a href="https://github.com/unscriptable/curl/issues/35">Curl vs RequireJS</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="slide">
+  <h2 class="monospace"><span class="defocus monospace">&lt;nutshell&gt;</span>require.js & AMD<span class="defocus monospace">&lt;/nutshell&gt;</span></h2>
+  <p>There is much more! Stay up to date and start coding now!</p>
+  <p>AMD/RequireJS is not a silver bullet, but it gets us to a better place</p>
+  <section class="slide">
+    <h3>People to follow</h3>
+    <ul>
+      <li><h4>James Burke</h4><p><a href="http://twitter.com/jrburke">@jrburke</a> - require.js</p></li>
+      <li><h4>John Hann</h4><p><a href="https://twitter.com/unscriptable">@unscriptable</a> - curl.js</p></li>
+      <li><h4>Addy Osmani</h4><p><a href="http://twitter.com/addyosmani">@addyosmani</a> - writer and knowledge machine</p></li>
+
+    </ul>
+  </section>
+</section>
+
+<section class="slide" style="text-align: center">
+  <h2>Thank you!</h2>
+  <img style="border: 1px solid black;margin-top:70px" src="qr.png">
+  <h3>- <a href="http://jarrodoverson.com/">Jarrod Overson</a> / jsoverson</h3>
+  <p>The presentation thanks
+    <a href="http://imakewebthings.github.com/deck.js/">Deck.js</a>,
+    <a href="http://omnipotent.net/jquery.sparkline/">jQuery sparklines</a>,
+    <a href="https://github.com/iros/deck.js-codemirror">Codemirror plugin for Deck.js</a>,
+  </p>
+
+</section>
+
+
+
+
+
+
+
+
+
+<a href="#" class="deck-prev-link" title="Previous"></a>
+<a href="#" class="deck-next-link" title="Next"></a>
+
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+
+  <!-- Grab CDN jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="deck.js/jquery-1.7.min.js"><\/script>')</script>
+  <script src="deck.js/jquery.sparkline.min.js"></script>
+
+<!-- Deck Core and extensions -->
+<script src="deck.js/core/deck.core.js"></script>
+<script src="deck.js/extensions/hash/deck.hash.js"></script>
+<script src="deck.js/extensions/menu/deck.menu.js"></script>
+<script src="deck.js/extensions/goto/deck.goto.js"></script>
+<script src="deck.js/extensions/status/deck.status.js"></script>
+<script src="deck.js/extensions/navigation/deck.navigation.js"></script>
+
+<script src="deck.js/extensions/codemirror/codemirror.js"></script>
+<script src="deck.js/extensions/codemirror/mode/javascript/javascript.js"></script>
+<script src="deck.js/extensions/codemirror/mode/xml/xml.js"></script>
+<script src="deck.js/extensions/codemirror/mode/css/css.js"></script>
+<script src="deck.js/extensions/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="deck.js/extensions/codemirror/deck.codemirror.js"></script>
+
+<!-- Specific to this page -->
+<script src="introduction.js"></script>
+
+</body>
+</html>

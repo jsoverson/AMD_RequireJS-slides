@@ -1,0 +1,78 @@
+.halfsize {
+  font-size:50% !important;
+}
+
+code em {
+  color : #990000;
+  font-style:normal !important;
+}
+code em.lighter {
+  color : #660000;
+}
+
+.CodeMirror {
+  background-color:#fff;
+}
+
+.code + h3 {
+  font-family: monospace !important;
+  font-weight:normal;
+  margin: 1em 0 0 0;
+  padding: 1px 0 0 1em;
+  font-size: 14pt;
+  border: 1px solid #CCC;
+  border-bottom-width: 0;
+  background-color: #EEE;
+}
+
+.isolate {
+}
+
+#intro h1 {
+  text-align:center;
+  font-size:2.5em;
+  position:static;
+  margin: 1em 0 .5em 0;
+-webkit-transform: none;
+-moz-transform: none;
+-ms-transform: none;
+-o-transform: none;
+transform: none;
+}
+
+#intro h2 {
+  text-align:center;
+  margin-top:1em;
+}
+
+#intro ul {
+  float:left;
+  margin-top:2em;
+  margin-left:10% !important;
+}
+
+#intro em {
+  font-weight:bold;
+}
+
+.qrcode {
+  float:right;
+  margin-right:10% !important;
+  border: 1px solid black !important;
+  -webkit-box-shadow: 0px 10px 6px -6px #000;
+  -moz-box-shadow: 0px 10px 6px -6px #000;
+  box-shadow: 0px 10px 6px -6px #000;
+  background-color:white;
+  display:inline-block !important;
+  vertical-align:middle;
+}
+
+.defocus {
+  color:#999;
+  font-weight:normal !important;
+  font-size:.7em !important;
+}
+
+.monospace {
+  font-family:monospace !important;
+}
